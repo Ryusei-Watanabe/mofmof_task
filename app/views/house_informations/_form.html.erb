@@ -1,0 +1,43 @@
+<%= form_with(model: @house_information, local: true) do |f| %>
+  <div class="field">
+    <p>物件名</p>
+    <p><%= f.text_field :property_name %></p>
+  </div>
+  <div class="field">
+    <p>賃料</p>
+    <p><%= f.number_field :house_rent %>円</p>
+  </div>
+  <div class="field">
+    <p>住所</p>
+    <p><%= f.text_field :adsress %></p>
+  </div>
+  <div class="field">
+    <p>築年数</p>
+    <p><%= f.number_field :age_of_a_build %>年</p>
+  </div>
+  <div class="field">
+    <p>備考</p>
+    <p><%= f.text_area :remark_column %></p>
+  </div>
+  <hr>
+    <% n = 1 %>
+    <%= f.fields_for :near_stations do |ff| %>
+    <h3> 最寄り駅<%= n %> </h3>
+    <% n += 1 %>
+      <div class="field">
+        <p>路線名</p>
+        <p><%= ff.text_field :route_name %></p>
+      </div>
+      <div class="field">
+        <p>駅名</p>
+        <p><%= ff.text_field :station_name %></p>
+      </div>
+      <div class="field">
+        <p>徒歩分数</p>
+        <p><%= ff.number_field :minutes_on_foot %>分</p>
+      </div>
+    <% end %>
+  <div class="actions">
+    <%= f.submit button_text %>
+  </div>
+<% end %>
